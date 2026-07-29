@@ -15,9 +15,9 @@ async function peerImport(moduleId) {
     try {
         switch (moduleId) {
             case 'itk-wasm':
-                return Promise.all(/* import() */[__webpack_require__.e(7739), __webpack_require__.e(6876), __webpack_require__.e(5830)]).then(__webpack_require__.bind(__webpack_require__, 5830));
+                return Promise.all(/* import() */[__webpack_require__.e(5626), __webpack_require__.e(6876), __webpack_require__.e(5830)]).then(__webpack_require__.bind(__webpack_require__, 5830));
             case '@itk-wasm/morphological-contour-interpolation':
-                return Promise.all(/* import() */[__webpack_require__.e(7739), __webpack_require__.e(6876), __webpack_require__.e(2516)]).then(__webpack_require__.bind(__webpack_require__, 82516));
+                return Promise.all(/* import() */[__webpack_require__.e(5626), __webpack_require__.e(6876), __webpack_require__.e(2516)]).then(__webpack_require__.bind(__webpack_require__, 82516));
             default:
                 throw new Error(`Unknown module ID: ${moduleId}`);
         }
@@ -637,7 +637,7 @@ function generateUUID() {
 /******/ 		// This function allow to reference async chunks and chunks that the entrypoint depends on
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "" + chunkId + ".bundle." + {"2516":"299b43d001321aeb1554","5491":"4866d2ecb20dd089e071","5830":"50dcea7ba7954661d2b7","6354":"d8a592b03e9a5b7a66c2","6376":"70707c4b6255e060bb21","6876":"c934fedea9e764a6dee9","7739":"284ecb0403a55285c0cb"}[chunkId] + ".js";
+/******/ 			return "" + chunkId + ".bundle." + {"2516":"3ccd71dca8225ff82115","5491":"4866d2ecb20dd089e071","5626":"bd31846db0396992ec9a","5830":"abec9ad356691cb01bf6","6354":"d8a592b03e9a5b7a66c2","6376":"41c8b936c8856cc52299","6876":"c934fedea9e764a6dee9"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	})();
 /******/ 	

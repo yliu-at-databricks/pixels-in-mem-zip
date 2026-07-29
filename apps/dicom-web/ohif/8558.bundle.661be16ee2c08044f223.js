@@ -936,7 +936,7 @@ function _extends() { return _extends = Object.assign ? Object.assign.bind() : f
 
 
 const Component = /*#__PURE__*/react.lazy(() => {
-  return Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(7739), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(7431), __webpack_require__.e(5299), __webpack_require__.e(2764), __webpack_require__.e(1608)]).then(__webpack_require__.bind(__webpack_require__, 88414));
+  return Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(5626), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(7431), __webpack_require__.e(5299), __webpack_require__.e(2764), __webpack_require__.e(1608)]).then(__webpack_require__.bind(__webpack_require__, 88414));
 });
 const OHIFCornerstoneRTViewport = props => {
   return /*#__PURE__*/react.createElement(react.Suspense, {

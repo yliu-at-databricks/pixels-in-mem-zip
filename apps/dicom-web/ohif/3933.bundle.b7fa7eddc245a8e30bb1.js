@@ -2368,8 +2368,8 @@ class OptionTable extends BaseTab {
     }, accuracy))))))));
   }
 }
-// EXTERNAL MODULE: ../../../node_modules/axios/index.js + 49 modules
-var axios = __webpack_require__(17739);
+// EXTERNAL MODULE: ../../../node_modules/axios/index.js + 51 modules
+var axios = __webpack_require__(5626);
 ;// ../../../../extensions/monai-label/src/services/MonaiLabelClient.js
 /*
 Copyright (c) MONAI Consortium

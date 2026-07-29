@@ -720,8 +720,8 @@ var interface_types = __webpack_require__(16881);
 //# sourceMappingURL=index-common.js.map
 // EXTERNAL MODULE: ../../../node_modules/comlink/dist/esm/comlink.mjs
 var comlink = __webpack_require__(99178);
-// EXTERNAL MODULE: ../../../node_modules/axios/index.js + 49 modules
-var axios = __webpack_require__(17739);
+// EXTERNAL MODULE: ../../../node_modules/axios/index.js + 51 modules
+var axios = __webpack_require__(5626);
 ;// ../../../node_modules/itk-wasm/dist/pipeline/create-web-worker.js
 
 async function createWebWorker(pipelineWorkerUrl) {

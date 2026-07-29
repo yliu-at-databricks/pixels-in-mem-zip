@@ -366,8 +366,8 @@ function generateUUID() {
 
 //# sourceMappingURL=comlink.mjs.map
 
-// EXTERNAL MODULE: ../../../node_modules/axios/index.js + 49 modules
-var axios = __webpack_require__(17739);
+// EXTERNAL MODULE: ../../../node_modules/axios/index.js + 51 modules
+var axios = __webpack_require__(5626);
 ;// ../../../node_modules/@thewtex/zstddec/dist/zstddec.modern.js
 /* provided dependency */ var Buffer = __webpack_require__(81429)["hp"];
 let init;
@@ -615,7 +615,7 @@ expose(workerOperations);
 /******/ 	__webpack_require__.x = () => {
 /******/ 		// Load entry module and return exports
 /******/ 		// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 		var __webpack_exports__ = __webpack_require__.O(undefined, [7739,6876], () => (__webpack_require__(36376)))
+/******/ 		var __webpack_exports__ = __webpack_require__.O(undefined, [5626,6876], () => (__webpack_require__(36376)))
 /******/ 		__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 		return __webpack_exports__;
 /******/ 	};
@@ -683,7 +683,7 @@ expose(workerOperations);
 /******/ 		// This function allow to reference async chunks and chunks that the entrypoint depends on
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "" + chunkId + ".bundle." + {"6876":"c934fedea9e764a6dee9","7739":"284ecb0403a55285c0cb"}[chunkId] + ".js";
+/******/ 			return "" + chunkId + ".bundle." + {"5626":"bd31846db0396992ec9a","6876":"c934fedea9e764a6dee9"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	})();
 /******/ 	
@@ -763,7 +763,7 @@ expose(workerOperations);
 /******/ 		var next = __webpack_require__.x;
 /******/ 		__webpack_require__.x = () => {
 /******/ 			return Promise.all([
-/******/ 				__webpack_require__.e(7739),
+/******/ 				__webpack_require__.e(5626),
 /******/ 				__webpack_require__.e(6876)
 /******/ 			]).then(next);
 /******/ 		};

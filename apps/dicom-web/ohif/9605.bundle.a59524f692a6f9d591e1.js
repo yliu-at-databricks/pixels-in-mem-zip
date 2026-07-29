@@ -33,8 +33,8 @@ var react = __webpack_require__(86326);
 ;// ../../../../../../../plugins/ohifv3/extensions/nifti-segmentation/src/components/NiftiOverlayPanel.css
 // extracted by mini-css-extract-plugin
 
-// EXTERNAL MODULE: ../../../node_modules/axios/index.js + 49 modules
-var axios = __webpack_require__(17739);
+// EXTERNAL MODULE: ../../../node_modules/axios/index.js + 51 modules
+var axios = __webpack_require__(5626);
 ;// ../../../../../../../plugins/ohifv3/extensions/nifti-segmentation/src/services/NiftiOverlayClient.ts
 /*
  * NiftiOverlayClient

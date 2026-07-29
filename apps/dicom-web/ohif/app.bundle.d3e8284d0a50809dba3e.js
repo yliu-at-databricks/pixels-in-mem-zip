@@ -79676,7 +79676,7 @@ const detectionOptions = {
   }
 });
 ;// ../../i18n/package.json
-const package_namespaceObject = {"rE":"3.12.3"};
+const package_namespaceObject = {"rE":"3.12.10"};
 ;// ../../i18n/src/utils.js
 const languagesMap = {
   ar: 'Arabic',
@@ -240491,35 +240491,35 @@ modes.push("@ohif/mode-ultrasound-pleura-bline");
 async function loadModule(module) {
   if (typeof module !== 'string') return module;
   if (module === "@ohif/extension-default") {
-    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(7739), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(5299), __webpack_require__.e(3343)]).then(__webpack_require__.bind(__webpack_require__, 37681));
+    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(5626), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(5299), __webpack_require__.e(3343)]).then(__webpack_require__.bind(__webpack_require__, 37681));
     return imported.default;
   }
   if (module === "@ohif/extension-cornerstone") {
-    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(7739), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(7431), __webpack_require__.e(5299), __webpack_require__.e(2764), __webpack_require__.e(5724)]).then(__webpack_require__.bind(__webpack_require__, 82764));
+    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(5626), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(7431), __webpack_require__.e(5299), __webpack_require__.e(2764), __webpack_require__.e(5724)]).then(__webpack_require__.bind(__webpack_require__, 82764));
     return imported.default;
   }
   if (module === "@ohif/extension-measurement-tracking") {
-    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(7739), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(7431), __webpack_require__.e(6347), __webpack_require__.e(5261), __webpack_require__.e(5299), __webpack_require__.e(2764), __webpack_require__.e(3461), __webpack_require__.e(4819)]).then(__webpack_require__.bind(__webpack_require__, 8877));
+    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(5626), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(7431), __webpack_require__.e(6347), __webpack_require__.e(5261), __webpack_require__.e(5299), __webpack_require__.e(2764), __webpack_require__.e(3461), __webpack_require__.e(4819)]).then(__webpack_require__.bind(__webpack_require__, 8877));
     return imported.default;
   }
   if (module === "@ohif/extension-cornerstone-dicom-sr") {
-    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(7739), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(7431), __webpack_require__.e(6347), __webpack_require__.e(5299), __webpack_require__.e(2764), __webpack_require__.e(3461), __webpack_require__.e(2591)]).then(__webpack_require__.bind(__webpack_require__, 93461));
+    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(5626), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(7431), __webpack_require__.e(6347), __webpack_require__.e(5299), __webpack_require__.e(2764), __webpack_require__.e(3461), __webpack_require__.e(2591)]).then(__webpack_require__.bind(__webpack_require__, 93461));
     return imported.default;
   }
   if (module === "@ohif/extension-cornerstone-dicom-seg") {
-    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(7739), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(7431), __webpack_require__.e(6347), __webpack_require__.e(5299), __webpack_require__.e(2764), __webpack_require__.e(8305)]).then(__webpack_require__.bind(__webpack_require__, 9099));
+    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(5626), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(7431), __webpack_require__.e(6347), __webpack_require__.e(5299), __webpack_require__.e(2764), __webpack_require__.e(8305)]).then(__webpack_require__.bind(__webpack_require__, 9099));
     return imported.default;
   }
   if (module === "@ohif/extension-cornerstone-dicom-pmap") {
-    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(7739), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(7431), __webpack_require__.e(6347), __webpack_require__.e(5299), __webpack_require__.e(2764), __webpack_require__.e(5028)]).then(__webpack_require__.bind(__webpack_require__, 82098));
+    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(5626), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(7431), __webpack_require__.e(6347), __webpack_require__.e(5299), __webpack_require__.e(2764), __webpack_require__.e(5028)]).then(__webpack_require__.bind(__webpack_require__, 82098));
     return imported.default;
   }
   if (module === "@ohif/extension-cornerstone-dynamic-volume") {
-    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(7739), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(7431), __webpack_require__.e(5299), __webpack_require__.e(2764), __webpack_require__.e(1730)]).then(__webpack_require__.bind(__webpack_require__, 14696));
+    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(5626), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(7431), __webpack_require__.e(5299), __webpack_require__.e(2764), __webpack_require__.e(1730)]).then(__webpack_require__.bind(__webpack_require__, 14696));
     return imported.default;
   }
   if (module === "@ohif/extension-dicom-microscopy") {
-    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(7739), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(2838), __webpack_require__.e(5299), __webpack_require__.e(1933)]).then(__webpack_require__.bind(__webpack_require__, 6015));
+    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(5626), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(2838), __webpack_require__.e(5299), __webpack_require__.e(1933)]).then(__webpack_require__.bind(__webpack_require__, 6015));
     return imported.default;
   }
   if (module === "@ohif/extension-dicom-pdf") {
@@ -240531,15 +240531,15 @@ async function loadModule(module) {
     return imported.default;
   }
   if (module === "@ohif/extension-tmtv") {
-    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(7739), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(7431), __webpack_require__.e(6347), __webpack_require__.e(5299), __webpack_require__.e(2764), __webpack_require__.e(8583)]).then(__webpack_require__.bind(__webpack_require__, 57289));
+    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(5626), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(7431), __webpack_require__.e(6347), __webpack_require__.e(5299), __webpack_require__.e(2764), __webpack_require__.e(8583)]).then(__webpack_require__.bind(__webpack_require__, 57289));
     return imported.default;
   }
   if (module === "@ohif/extension-test") {
-    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(7739), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(7431), __webpack_require__.e(5299), __webpack_require__.e(2764), __webpack_require__.e(6163)]).then(__webpack_require__.bind(__webpack_require__, 94285));
+    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(5626), __webpack_require__.e(8271), __webpack_require__.e(3562), __webpack_require__.e(1554), __webpack_require__.e(7431), __webpack_require__.e(5299), __webpack_require__.e(2764), __webpack_require__.e(6163)]).then(__webpack_require__.bind(__webpack_require__, 94285));
     return imported.default;
   }
   if (module === "@ohif/extension-monai-label") {
-    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(7739), __webpack_require__.e(7711), __webpack_require__.e(5609), __webpack_require__.e(3933)]).then(__webpack_require__.bind(__webpack_require__, 73933));
+    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(5626), __webpack_require__.e(7711), __webpack_require__.e(5609), __webpack_require__.e(3933)]).then(__webpack_require__.bind(__webpack_require__, 73933));
     return imported.default;
   }
   if (module === "@ohif/extension-image-redactor") {
@@ -240551,7 +240551,7 @@ async function loadModule(module) {
     return imported.default;
   }
   if (module === "@ohif/extension-nifti-segmentation") {
-    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(7739), __webpack_require__.e(7711), __webpack_require__.e(7200), __webpack_require__.e(9605)]).then(__webpack_require__.bind(__webpack_require__, 89605));
+    const imported = await Promise.all(/* import() */[__webpack_require__.e(4287), __webpack_require__.e(2199), __webpack_require__.e(6409), __webpack_require__.e(9205), __webpack_require__.e(5626), __webpack_require__.e(7711), __webpack_require__.e(7200), __webpack_require__.e(9605)]).then(__webpack_require__.bind(__webpack_require__, 89605));
     return imported.default;
   }
   if (module === "@ohif/extension-cornerstone-dicom-rt") {
@@ -395537,7 +395537,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "" + ({"572":"polySeg","2007":"interpolation","3054":"histogram-worker","3694":"compute"}[chunkId] || chunkId) + ".bundle." + {"85":"9a8d21329059ff1fd5f8","147":"037f190998936d61183b","213":"4f5a9f54de1d8b00dbe0","572":"e377acbd164c676dd471","732":"ea6f9d8504e37e01a208","1398":"667fbe38ca6d9fdfea19","1403":"75d8ae601fad37ac59b9","1459":"0df00d11af8704537c76","1554":"313701fc6b7c2b153c28","1608":"7879b1f7ca74b87faf8c","1730":"9a528d67a7ddfefd4ac8","1758":"9574b448d811268c73b4","1927":"da05087c08bf79ab6164","1933":"f47a3916c63908ce4510","2007":"66ff78ab4e086e262118","2018":"a75601d36f8335e6ad70","2068":"bbd5a91f3a9f27e42002","2199":"05379e24d0559fb1b62d","2424":"200b0ae6a4293279fd9b","2701":"57fa57f3211b5af30333","2764":"eeb852510f3006df2e59","2838":"8d4f0cf2c02681ca6878","3054":"96d0f655b219f175d38c","3343":"a4424b8418b8c0c1a9e4","3461":"58547d3ab516df762f48","3562":"6b7411fbb94c93a34820","3694":"97539c10dd60d08fbd62","3910":"b6180cdfa45c750c206b","3933":"aadc7dabcb74e4ca266c","4202":"be22ef13c3844ef0f8c4","4287":"87e14e648f2bce5e4176","4775":"d0ea4b37875cfa85e56c","4819":"f7757d944c785f953b6b","5028":"cd59aeb28444f14ad1ee","5261":"2655560097e9250eac44","5299":"4ae3f0d5a95b5483f5e9","5457":"c44221459be9b9c5937c","5485":"1add1e84bf0652e1f978","5547":"10a9625eac35067f6c77","5609":"41430e142f0b95cb32e9","5724":"62ea5c07c7809ab4cd74","5802":"d0b1eda248c9ce5ff880","6027":"4b70caf6273a7926016d","6163":"09921650f5c2a777c59a","6347":"46b118d368710e08c546","6409":"24edbaa283b7c521b8f7","6939":"41fbdef87597b5172ec6","7159":"897f8b37628c4825813a","7200":"5fa5ec43a8746a209e51","7431":"b31ebb4a2625e89d864e","7639":"2d2d8e9a7a2b7ebb5f0d","7711":"6e7d196e481626c6da19","7739":"284ecb0403a55285c0cb","8094":"148a66619607e37cbf19","8271":"a14605302efc3ba38625","8305":"309e576248179fe14315","8558":"23482691a1f00531ff64","8583":"762529c834782843b7cc","9205":"2a2f38a4ee23647f5fa4","9605":"ff0b5c0ab0221f89ba28","9845":"57924e16778260ebad60","9862":"5763cb6044cb4fff7cdd","9927":"0c64f8bd3e753c891eab"}[chunkId] + ".js";
+/******/ 			return "" + ({"572":"polySeg","2007":"interpolation","3054":"histogram-worker","3694":"compute"}[chunkId] || chunkId) + ".bundle." + {"85":"34bf126d73bfe7bd0c74","147":"037f190998936d61183b","213":"375ff9c9295ab3a9ecc5","572":"e377acbd164c676dd471","732":"ea6f9d8504e37e01a208","1398":"667fbe38ca6d9fdfea19","1403":"229f8612c0545e1434ad","1459":"77654dada16c827f1a5a","1554":"313701fc6b7c2b153c28","1608":"7879b1f7ca74b87faf8c","1730":"7878db27641dbdae0302","1758":"9574b448d811268c73b4","1927":"da05087c08bf79ab6164","1933":"b8a8211420570957f993","2007":"7b3c03c07781baa5c61e","2018":"1e6baa636971fff473ba","2068":"bbd5a91f3a9f27e42002","2199":"05379e24d0559fb1b62d","2424":"1fea2b1d823982806543","2701":"57fa57f3211b5af30333","2764":"855d37a237cd61534b76","2838":"8d4f0cf2c02681ca6878","3054":"96d0f655b219f175d38c","3343":"a4424b8418b8c0c1a9e4","3461":"22a2ba3350facd6a1fb4","3562":"6b7411fbb94c93a34820","3694":"97539c10dd60d08fbd62","3910":"b6180cdfa45c750c206b","3933":"b7fa7eddc245a8e30bb1","4202":"be22ef13c3844ef0f8c4","4287":"87e14e648f2bce5e4176","4775":"ba8be055899701b7644b","4819":"2fa1dfd1d7f56faf99b7","5028":"4e71d92e1adbfca89e7c","5261":"2655560097e9250eac44","5299":"c9d41d9c7507fcf2e2a4","5457":"a3c7c2fb6b12cffe8f95","5485":"ca3288d5f3dee62ef789","5547":"10a9625eac35067f6c77","5609":"41430e142f0b95cb32e9","5626":"bd31846db0396992ec9a","5724":"62ea5c07c7809ab4cd74","5802":"d0b1eda248c9ce5ff880","6027":"93d6b429b7e4bb76769c","6163":"a29bd0472ba36176735c","6347":"46b118d368710e08c546","6409":"24edbaa283b7c521b8f7","6939":"41fbdef87597b5172ec6","7159":"897f8b37628c4825813a","7200":"5fa5ec43a8746a209e51","7431":"b31ebb4a2625e89d864e","7639":"776e33d4900903701e23","7711":"6e7d196e481626c6da19","8094":"148a66619607e37cbf19","8271":"a14605302efc3ba38625","8305":"b18f5cd2c4a71b87380f","8558":"661be16ee2c08044f223","8583":"f522e3dd8ebec1e634a5","9205":"2a2f38a4ee23647f5fa4","9605":"a59524f692a6f9d591e1","9845":"57924e16778260ebad60","9862":"5763cb6044cb4fff7cdd","9927":"965093b2cb94908285de"}[chunkId] + ".js";
 /******/ 		};
 /******/ 	})();
 /******/ 	
@@ -395892,7 +395892,7 @@ function __rewriteRelativeImportExtension(path, preserveJsx) {
 /******/ 				2199,
 /******/ 				6409,
 /******/ 				9205,
-/******/ 				7739,
+/******/ 				5626,
 /******/ 				8271,
 /******/ 				3562,
 /******/ 				1554,

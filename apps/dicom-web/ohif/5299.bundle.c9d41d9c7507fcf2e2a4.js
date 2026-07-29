@@ -2091,8 +2091,8 @@ function createDicomLocalApi(dicomLocalConfig) {
   return src.IWebApiDataSource.create(implementation);
 }
 
-// EXTERNAL MODULE: ../../../node_modules/axios/index.js + 49 modules
-var axios = __webpack_require__(17739);
+// EXTERNAL MODULE: ../../../node_modules/axios/index.js + 51 modules
+var axios = __webpack_require__(5626);
 // EXTERNAL MODULE: ../../../node_modules/crypto-js/sha1.js
 var sha1 = __webpack_require__(66297);
 var sha1_default = /*#__PURE__*/__webpack_require__.n(sha1);
@@ -2805,7 +2805,7 @@ function createDatabricksPixelsDicom(dcmConfig, servicesManager) {
         host: dicomConfig.serverHostname,
         path: dicomConfig.httpPath
       };
-      databricksClient = axios/* default */.Ay.create({
+      databricksClient = axios/* default.create */.Ay.create({
         baseURL: connectOptions.host + "/api/2.0/"
       });
       databricksClient.defaults.headers.common['Authorization'] = `Bearer ${connectOptions.token}`;
@@ -11473,8 +11473,8 @@ function AboutModalDefault() {
     name
   } = (0,browser_detect_es5/* default */.A)();
   const browser = `${name[0].toUpperCase()}${name.substr(1)} ${version}`;
-  const versionNumber = "3.12.3";
-  const commitHash = "fb4441ba71ec95dd494d120152a61df9261024cb";
+  const versionNumber = "3.12.10";
+  const commitHash = "6c696e0def2b5fddc3c11f3d49656466d368d754";
   const [main, beta] = versionNumber.split('-');
   return /*#__PURE__*/react.createElement(ui_next_src/* AboutModal */.VTU, {
     className: "w-[400px]"
