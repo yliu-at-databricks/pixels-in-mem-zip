@@ -4,7 +4,12 @@ from pyspark.sql import DataFrame, functions as f
 from pyspark.sql.streaming.query import StreamingQuery
 
 from dbx.pixels.logging import LoggerProvider
-from dbx.pixels.utils import DEFAULT_UNZIP_WORKERS, identify_type_udf, unzip_map_func
+from dbx.pixels.utils import (
+    DEFAULT_UNZIP_WORKERS,
+    identify_type_udf,
+    unzip_inmemory_map_func,
+    unzip_map_func,
+)
 
 # dfZipWithIndex helper function
 
@@ -128,14 +133,16 @@ class Catalog:
     def __repr__(self):
         return f'Catalog(spark, table="{self._table}")'
 
-    def __reader(self, path: str, pattern: str = "*", recurse: bool = True):
-        return (
+    def __reader(self, path: str, pattern: str = "*", recurse: bool = True, keepContent: bool = False):
+        df = (
             self._spark.read.format("binaryFile")
             .option("pathGlobFilter", pattern)
             .option("recursiveFileLookup", str(recurse).lower())
             .load(path)
-            .drop("content")
         )
+        if not keepContent:
+            df = df.drop("content")
+        return df
 
     def __streamReader(
         self,
@@ -147,6 +154,7 @@ class Catalog:
         includeExistingFiles: bool = True,
         allowOverwrites: bool = False,
         maxFileAge: str = None,
+        keepContent: bool = False,
     ):
         reader = (
             self._spark.readStream.format("cloudFiles")
@@ -164,7 +172,10 @@ class Catalog:
         if useManagedFileEvents:
             reader = reader.option("cloudFiles.useManagedFileEvents", "true")
 
-        return reader.load(path).drop("content")
+        df = reader.load(path)
+        if not keepContent:
+            df = df.drop("content")
+        return df
 
     def catalog(
         self,
@@ -261,67 +272,42 @@ class Catalog:
                 includeExistingFiles,
                 allowOverwrites,
                 maxFileAge,
+                keepContent=extractZip,
             ).withColumn("original_path", f.col("path"))
 
             if extractZip:
-                logger.info("Started unzip process")
+                logger.info("Started in-memory unzip process")
 
                 if zipRepartition is not None:
                     df = df.repartition(zipRepartition)
 
-                unzip_stream = (
-                    df.mapInPandas(
-                        unzip_map_func("path", extractZipBasePath),
-                        schema=df.schema,
-                    )
-                    .writeStream.format("delta")
-                    .outputMode("append")
-                    .option(
-                        "checkpointLocation", f"{self.streamCheckpointBasePath}/{self._table}_unzip"
-                    )
-                    .option("maxRecordsPerFile", maxUnzippedRecordsPerFile)
-                    .option("mergeSchema", "true")
-                    .trigger(
-                        availableNow=self._triggerAvailableNow,
-                        processingTime=self._triggerProcessingTime,
-                    )
-                    .queryName(self._queryName + "_unzip")
-                    .toTable(f"{self._table}_unzip")
+                # In-memory zip extraction: explode zip entries into rows
+                # without writing extracted files to disk
+                df = df.mapInPandas(
+                    unzip_inmemory_map_func("path", "content"),
+                    schema=df.schema,
                 )
 
-                if self._triggerAvailableNow:
-                    unzip_stream.awaitTermination()
-
-                logger.info("Unzip process completed")
-
-                df = self._spark.readStream.option("maxFilesPerTrigger", "1").table(
-                    f"{self._table}_unzip"
-                )
-
-                # Rebalance the extracted files among workers
-                df = df.repartition(int(maxUnzippedRecordsPerFile // maxZipElementsPerPartition))
+                logger.info("In-memory unzip process configured")
 
         else:
-            df = self.__reader(path, pattern, recurse).withColumn("original_path", f.col("path"))
+            df = self.__reader(path, pattern, recurse, keepContent=extractZip).withColumn(
+                "original_path", f.col("path")
+            )
             if extractZip:
-                logger.info("Started unzip process")
+                logger.info("Started in-memory unzip process")
 
                 if zipRepartition is not None:
                     df = df.repartition(zipRepartition)
 
-                df.mapInPandas(
-                    unzip_map_func("path", extractZipBasePath, max_workers=maxUnzipWorkers),
+                # In-memory zip extraction: explode zip entries into rows
+                # without writing extracted files to disk
+                df = df.mapInPandas(
+                    unzip_inmemory_map_func("path", "content"),
                     schema=df.schema,
-                ).write.format("delta").mode("append").saveAsTable(f"{self._table}_unzip")
-
-                logger.info("Unzip process completed")
-
-                df = self._spark.read.table(f"{self._table}_unzip")
-
-                records = df.count()
-                df = df.repartition(
-                    int(records // maxZipElementsPerPartition) | maxZipElementsPerPartition
                 )
+
+                logger.info("In-memory unzip process completed")
 
         # Generate paths
         df = Catalog._with_path_meta(df)
