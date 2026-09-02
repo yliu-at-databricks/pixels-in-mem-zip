@@ -186,7 +186,9 @@ class Catalog:
         streamCheckpointBasePath: str = None,
         triggerProcessingTime: str = None,
         triggerAvailableNow: bool = None,
-        extractZip: bool = False,
+        skipZip: bool = False,
+        extractZipToDisk: bool = False,
+        extractZipInMemory: bool = False,
         extractZipBasePath: str = None,
         maxFilesPerTrigger: int = 50000,
         maxUnzippedRecordsPerFile: int = 102400,
@@ -210,8 +212,15 @@ class Catalog:
         - streamCheckpointBasePath (str, optional): The path for saving streaming progress. Defaults to volume location + "/checkpoints/".
         - triggerProcessingTime (str, optional): The processing time interval for streaming triggers, e.g., '5 seconds', '1 minute'.
         - triggerAvailableNow (bool, optional): If True, processes all available data in multiple batches then terminates the query.
-        - extractZip (bool, optional): Whether to extract zip files found in the path. Defaults to False.
-        - extractZipBasePath (str, optional): The base path for extracted zip files. Defaults to volume location + "/unzipped/".
+        - skipZip (bool, optional): Explicitly skip zip files; they are listed as-is but not extracted.
+          When no flag is set, skip is the default behavior.
+        - extractZipToDisk (bool, optional): Extract zip files to disk (at extractZipBasePath), then process
+          extracted files via a Spark job. Defaults to False.
+        - extractZipInMemory (bool, optional): Extract zip files in memory during the Spark job; extracted
+          content is available in the 'content' column. Defaults to False.
+        Note: skipZip, extractZipToDisk, and extractZipInMemory are mutually exclusive; only one may be True.
+        - extractZipBasePath (str, optional): The base path for extracted zip files (used only with
+          extractZipToDisk=True). Defaults to volume location + "/unzipped/".
         - maxFilesPerTrigger (int, optional): The maximum number of files to process per trigger in streaming. Defaults to 1000.
         - maxUnzippedRecordsPerFile (int, optional): The maximum number of records per file when unzipping. Defaults to 102400.
         - maxZipElementsPerPartition (int, optional): The maximum number of zip elements per partition. Defaults to 32.
@@ -225,7 +234,8 @@ class Catalog:
           Defaults to False.
         - maxFileAge (str, optional): Maximum age of files considered for ingestion by Auto Loader (for example: "90 days").
           Defaults to None (Auto Loader default).
-        - maxUnzipWorkers (int, optional): The maximum number of workers for parallel unzip. Defaults to 16.
+        - maxUnzipWorkers (int, optional): The maximum number of workers for parallel unzip (used only with
+          extractZipToDisk=True). Defaults to 16.
 
         Returns:
         DataFrame: A DataFrame of the cataloged data, with metadata and optionally extracted contents from zip files.
@@ -233,6 +243,15 @@ class Catalog:
 
         assert self._spark is not None
         assert self._spark.version is not None
+
+        _zip_flag_count = sum([skipZip, extractZipToDisk, extractZipInMemory])
+        if _zip_flag_count > 1:
+            raise ValueError(
+                "Only one of skipZip, extractZipToDisk, extractZipInMemory can be True at a time. "
+                "These options are mutually exclusive."
+            )
+        if _zip_flag_count == 0:
+            skipZip = True
 
         self._anon = self._is_anon(path)
 
@@ -272,17 +291,56 @@ class Catalog:
                 includeExistingFiles,
                 allowOverwrites,
                 maxFileAge,
-                keepContent=extractZip,
+                keepContent=extractZipInMemory,
             ).withColumn("original_path", f.col("path"))
 
-            if extractZip:
+            if extractZipToDisk:
+                logger.info("Started disk unzip process")
+
+                if zipRepartition is not None:
+                    df = df.repartition(zipRepartition)
+
+                unzip_stream = (
+                    df.mapInPandas(
+                        unzip_map_func("path", extractZipBasePath),
+                        schema=df.schema,
+                    )
+                    .writeStream.format("delta")
+                    .outputMode("append")
+                    .option(
+                        "checkpointLocation",
+                        f"{self.streamCheckpointBasePath}/{self._table}_unzip",
+                    )
+                    .option("maxRecordsPerFile", maxUnzippedRecordsPerFile)
+                    .option("mergeSchema", "true")
+                    .trigger(
+                        availableNow=self._triggerAvailableNow,
+                        processingTime=self._triggerProcessingTime,
+                    )
+                    .queryName(self._queryName + "_unzip")
+                    .toTable(f"{self._table}_unzip")
+                )
+
+                if self._triggerAvailableNow:
+                    unzip_stream.awaitTermination()
+
+                logger.info("Disk unzip process completed")
+
+                df = self._spark.readStream.option("maxFilesPerTrigger", "1").table(
+                    f"{self._table}_unzip"
+                )
+
+                # Rebalance the extracted files among workers
+                df = df.repartition(
+                    int(maxUnzippedRecordsPerFile // maxZipElementsPerPartition)
+                )
+
+            elif extractZipInMemory:
                 logger.info("Started in-memory unzip process")
 
                 if zipRepartition is not None:
                     df = df.repartition(zipRepartition)
 
-                # In-memory zip extraction: explode zip entries into rows
-                # without writing extracted files to disk
                 df = df.mapInPandas(
                     unzip_inmemory_map_func("path", "content"),
                     schema=df.schema,
@@ -291,17 +349,36 @@ class Catalog:
                 logger.info("In-memory unzip process configured")
 
         else:
-            df = self.__reader(path, pattern, recurse, keepContent=extractZip).withColumn(
-                "original_path", f.col("path")
-            )
-            if extractZip:
+            df = self.__reader(
+                path, pattern, recurse, keepContent=extractZipInMemory
+            ).withColumn("original_path", f.col("path"))
+
+            if extractZipToDisk:
+                logger.info("Started disk unzip process")
+
+                if zipRepartition is not None:
+                    df = df.repartition(zipRepartition)
+
+                df.mapInPandas(
+                    unzip_map_func("path", extractZipBasePath, max_workers=maxUnzipWorkers),
+                    schema=df.schema,
+                ).write.format("delta").mode("append").saveAsTable(f"{self._table}_unzip")
+
+                logger.info("Disk unzip process completed")
+
+                df = self._spark.read.table(f"{self._table}_unzip")
+
+                records = df.count()
+                df = df.repartition(
+                    int(records // maxZipElementsPerPartition) | maxZipElementsPerPartition
+                )
+
+            elif extractZipInMemory:
                 logger.info("Started in-memory unzip process")
 
                 if zipRepartition is not None:
                     df = df.repartition(zipRepartition)
 
-                # In-memory zip extraction: explode zip entries into rows
-                # without writing extracted files to disk
                 df = df.mapInPandas(
                     unzip_inmemory_map_func("path", "content"),
                     schema=df.schema,
